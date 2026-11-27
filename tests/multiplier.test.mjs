@@ -1,7 +1,7 @@
 import { readFile } from "node:fs/promises";
 import test from "node:test";
 import assert from "node:assert/strict";
-import { evaluateMultiplier } from "../lib/multiplier.ts";
+import { evaluateMultiplier } from "../lib/multiplier.mjs";
 
 test("accepts a valid multiplication relation", () => {
   const result = evaluateMultiplier("3", "7", "21");
