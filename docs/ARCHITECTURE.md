@@ -1,10 +1,10 @@
 # MIX Technical Architecture
 
-**Status:** Proposed architecture v0.1
+**Status:** Proposed architecture v0.2
 
 ## 1. System overview
 
-MIX is a web-first ZK developer workspace. The browser owns the interactive experience and, for the initial educational circuits, performs witness and proof operations locally. An EVM verifier contract on Arbitrum Sepolia provides a public demonstration of on-chain verification.
+MIX is a web-first ZK developer workspace. The initial application is a responsive Next.js dashboard. Later milestones add local educational proof generation and an EVM verifier demonstration on Arbitrum Sepolia.
 
 ```text
 ┌───────────────────────────────────────────────────────────┐
@@ -29,7 +29,7 @@ MIX is a web-first ZK developer workspace. The browser owns the interactive expe
 ## 2. Application layers
 
 ### Presentation
-Next.js App Router, React, TypeScript, Tailwind CSS, and accessible UI components. Server Components are preferred for static content; Client Components are limited to interactive wallet, playground, and explorer features.
+Next.js App Router, React, TypeScript, a custom responsive CSS design system, and lucide-react icons. Server Components are preferred for static content; Client Components are limited to interactive wallet, playground, and explorer features.
 
 ### Domain layer
 Typed models and use cases:
@@ -51,44 +51,37 @@ wagmi and viem provide wallet connection, chain detection, contract reads, and u
 ### Smart contracts
 A minimal verifier integration for deterministic educational statements. Contract code must be independently tested and reviewed. A successful verification means only that the verifier accepted the proof and public signals under the deployed verification key; it does not certify broader real-world claims.
 
-## 3. Suggested repository structure
+## 3. Current repository structure
 
 ```text
 mix/
-├── apps/
-│   └── web/
-│       ├── app/
-│       ├── components/
-│       ├── features/
-│       │   ├── dashboard/
-│       │   ├── playground/
-│       │   ├── proofs/
-│       │   ├── merkle/
-│       │   └── contracts/
-│       ├── lib/
-│       │   ├── chain/
-│       │   ├── zk/
-│       │   └── config/
-│       └── public/
-├── packages/
-│   ├── zk-core/
-│   ├── sdk/
-│   └── config/
-├── circuits/
-│   └── examples/
-├── contracts/
-│   ├── src/
-│   ├── test/
-│   └── script/
+├── app/
+│   ├── globals.css
+│   ├── layout.tsx
+│   └── page.tsx
 ├── docs/
-├── .github/
-│   └── workflows/
 ├── .env.example
 ├── .gitignore
-└── README.md
+├── eslint.config.mjs
+├── next.config.ts
+├── package.json
+└── tsconfig.json
 ```
 
-This is a target structure, not a claim that these directories have already been implemented.
+Target future structure:
+
+```text
+mix/
+├── apps/web/
+├── packages/zk-core/
+├── packages/sdk/
+├── packages/config/
+├── circuits/examples/
+├── contracts/src/
+├── contracts/test/
+├── contracts/script/
+└── docs/
+```
 
 ## 4. Initial proof lifecycle
 
@@ -112,7 +105,7 @@ Initial supported chain:
 - Explorer: https://sepolia.arbiscan.io
 - Native currency: ETH testnet
 
-Use a single typed chain configuration source. The chain ID must be checked at runtime before any write operation. Public RPC endpoints may rate-limit; production-grade reliability requires an explicitly configured provider and monitoring.
+Use a single typed chain configuration source. The chain ID must be checked at runtime before any write operation. Public RPC endpoints may rate-limit; repeatable integration testing requires an explicitly configured provider and monitoring.
 
 ## 6. Data model (initial)
 
