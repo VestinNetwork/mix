@@ -84,7 +84,7 @@ Do not commit private keys, seed phrases, API secrets, or production credentials
 
 The repository now contains a responsive dashboard, an arithmetic-only ZK Playground preview, shared input validation, a Circom teaching circuit, a local SHA-256 Merkle Explorer with membership paths, committed test vectors, eleven Node unit tests, error/not-found boundaries, baseline HTTP security headers, and deployment/quality/threat-model documentation. The arithmetic preview is not a cryptographic proof. Circom compilation, witness generation, cryptographic proof generation/verification, wallet integration, verifier contracts, and deployment are not yet complete. GitHub Actions is configured, but recent runs failed before a hosted runner was assigned; a successful full build has not been verified. No production contract has been deployed, no user funds are accepted, and no mainnet release is planned.
 
-See [Product Specification](docs/PRODUCT_SPEC.md), [Architecture](docs/ARCHITECTURE.md), [Roadmap](docs/ROADMAP.md), [Security](docs/SECURITY.md), [Development Guide](docs/DEVELOPMENT.md), [Deployment Guide](docs/DEPLOYMENT.md), [Quality Gates](docs/QUALITY_GATES.md), and [Threat Model](docs/THREAT_MODEL.md).
+See [Product Specification](docs/PRODUCT_SPEC.md), [Architecture](docs/ARCHITECTURE.md), [Roadmap](docs/ROADMAP.md), [Security](docs/SECURITY.md), [Development Guide](docs/DEVELOPMENT.md), [Deployment Guide](docs/DEPLOYMENT.md), [Quality Gates](docs/QUALITY_GATES.md), [Merkle Explorer Guide](docs/MERKLE_EXPLORER.md), and [Threat Model](docs/THREAT_MODEL.md).
 
 ## License
 
