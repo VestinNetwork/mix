@@ -34,7 +34,7 @@ type Section = "Overview" | "Playground" | "Proof explorer" | "Merkle explorer" 
 
 const navItems: { label: Section; icon: typeof LayoutDashboard; tag?: string }[] = [
   { label: "Overview", icon: LayoutDashboard },
-  { label: "Playground", icon: FlaskConical, tag: "Soon" },
+  { label: "Playground", icon: FlaskConical },
   { label: "Proof explorer", icon: FileCheck2, tag: "Soon" },
   { label: "Merkle explorer", icon: GitBranch, tag: "Soon" },
   { label: "Contracts", icon: Boxes, tag: "Soon" },
@@ -47,7 +47,7 @@ const modules = [
     title: "ZK Playground",
     description: "Experiment with circuits, inputs, constraints, and proof verification in a guided workspace.",
     icon: FlaskConical,
-    status: "In development",
+    status: "Preview available",
     tone: "violet"
   },
   {
