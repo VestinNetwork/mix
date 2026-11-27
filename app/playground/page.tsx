@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useState } from "react";
+import { evaluateMultiplier } from "@/lib/multiplier";
 import { ArrowLeft, CheckCircle2, CircleAlert, Code2, FlaskConical, ShieldAlert } from "lucide-react";
 
 const circuitSource = `template Multiplier2() {
@@ -19,23 +20,7 @@ export default function PlaygroundPage() {
   const [b, setB] = useState("7");
   const [product, setProduct] = useState("21");
 
-  const result = useMemo(() => {
-    const values = [a, b, product];
-    if (values.some((value) => !/^[0-9]+$/.test(value))) {
-      return { valid: false, ready: false, message: "Use non-negative whole numbers only." };
-    }
-    const numbers = values.map(Number);
-    if (numbers.some((value) => !Number.isSafeInteger(value) || value > 1_000_000)) {
-      return { valid: false, ready: false, message: "Keep each value between 0 and 1,000,000 for this preview." };
-    }
-    return {
-      valid: numbers[0] * numbers[1] === numbers[2],
-      ready: true,
-      message: numbers[0] * numbers[1] === numbers[2]
-        ? "The values satisfy the multiplication constraint."
-        : "The values do not satisfy the multiplication constraint."
-    };
-  }, [a, b, product]);
+  const result = evaluateMultiplier(a, b, product);
 
   const fieldStyle = {
     width: "100%",
@@ -83,8 +68,8 @@ export default function PlaygroundPage() {
             <div style={{ marginTop: 20, background: "#0b1020", borderRadius: 10, padding: 14, color: "#dbe2f4", fontFamily: "monospace", fontSize: 14 }}>
               {a || "a"} × {b || "b"} = {product || "product"}
             </div>
-            <div aria-live="polite" style={{ display: "flex", gap: 10, alignItems: "center", marginTop: 16, borderRadius: 10, padding: 13, background: result.ready && result.valid ? "#10271f" : "#2a1b20", color: result.ready && result.valid ? "#8ce0b6" : "#ffb1b1" }}>
-              {result.ready && result.valid ? <CheckCircle2 size={18} /> : <CircleAlert size={18} />}
+            <div aria-live="polite" style={{ display: "flex", gap: 10, alignItems: "center", marginTop: 16, borderRadius: 10, padding: 13, background: result.ok && result.valid ? "#10271f" : "#2a1b20", color: result.ready && result.valid ? "#8ce0b6" : "#ffb1b1" }}>
+              {result.ok && result.valid ? <CheckCircle2 size={18} /> : <CircleAlert size={18} />}
               <span style={{ fontSize: 13, lineHeight: 1.5 }}>{result.message}</span>
             </div>
           </section>
