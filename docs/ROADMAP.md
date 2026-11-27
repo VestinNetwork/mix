@@ -24,7 +24,7 @@
 
 ## Milestone 2 — ZK learning engine
 
-Current partial implementation: an interactive arithmetic-only Playground, a shared input validator, eleven passing unit tests in an isolated Node 22.16 test run, and a Circom source example. No Circom compilation, witness generation, cryptographic proof generation, or proof verification has been run.
+Current partial implementation: an interactive arithmetic-only Playground, a shared input validator, twelve passing unit tests in an isolated Node 22.16 test run, and a Circom source example. No Circom compilation, witness generation, cryptographic proof generation, or proof verification has been run.
 - [x] Add one small, non-financial educational circuit (Multiplier2 example).
 - [ ] Pin compiler/proof-library versions and commit reproducible dependency lockfile.
 - [x] Add committed known-good valid/invalid test vectors and Node unit tests.
