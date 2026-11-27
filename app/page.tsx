@@ -23,7 +23,6 @@ import {
   LockKeyhole,
   Menu,
   Network,
-  Play,
   Search,
   ShieldCheck,
   Sparkles,
