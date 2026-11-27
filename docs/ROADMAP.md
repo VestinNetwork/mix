@@ -23,11 +23,11 @@
 **Exit criteria:** clean install, lint, typecheck, and production build succeed.
 
 ## Milestone 2 — ZK learning engine
-- [ ] Add one small, non-financial educational circuit.
-- [ ] Pin compiler and proof-library versions.
+- [x] Add one small, non-financial educational circuit (Multiplier2 example).
+- [ ] Pin compiler and proof-library versions and commit a reproducible dependency lockfile.
 - [ ] Add known-good test vectors.
 - [ ] Add browser worker adapter.
-- [ ] Generate and locally verify a proof.
+- [ ] Generate and locally verify a proof (not implemented; current Playground is arithmetic-only).
 - [ ] Handle invalid inputs and malformed proofs.
 - [ ] Document setup and artifact provenance.
 
