@@ -27,7 +27,9 @@ jobs:
         with:
           node-version: 22
       - name: Install dependencies
-        run: npm install --no-audit --no-fund
+        run: npm install --fund=false
+      - name: Dependency audit
+        run: npm audit --audit-level=high
       - name: Unit tests
         run: npm test
       - name: Lint
