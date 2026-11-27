@@ -19,14 +19,9 @@ export default function MerkleExplorerPage() {
 
   useEffect(() => {
     let cancelled = false;
-    setBusy(true);
-    setError("");
-    setTree(null);
-    setVerified(null);
     buildMerkleTree(leaves).then((nextTree) => {
       if (!cancelled) {
         setTree(nextTree);
-        setSelectedIndex((current) => Math.min(current, leaves.length - 1));
         setBusy(false);
       }
     }).catch((reason: unknown) => {
@@ -40,17 +35,17 @@ export default function MerkleExplorerPage() {
 
   useEffect(() => {
     let cancelled = false;
-    if (!tree || !leaves[selectedIndex]) return;
-    setVerified(null);
-    verifyMerkleProof(leaves[selectedIndex], tree.proofs[selectedIndex], tree.root).then((result) => {
+    if (!tree || !leaves[safeIndex]) return;
+    verifyMerkleProof(leaves[safeIndex], tree.proofs[safeIndex], tree.root).then((result) => {
       if (!cancelled) setVerified(result);
     });
     return () => { cancelled = true; };
-  }, [tree, selectedIndex, leaves]);
+  }, [tree, safeIndex, leaves]);
 
   const panel: React.CSSProperties = { background: "#11182a", border: "1px solid #26314b", borderRadius: 14, padding: 20 };
   const mono: React.CSSProperties = { fontFamily: "ui-monospace, SFMono-Regular, monospace", overflowWrap: "anywhere" };
-  const selectedProof = tree?.proofs[selectedIndex] ?? [];
+  const safeIndex = Math.min(selectedIndex, Math.max(leaves.length - 1, 0));
+  const selectedProof = tree?.proofs[safeIndex] ?? [];
 
   return (
     <main style={{ minHeight: "100vh", background: "#080c18", color: "#eef1ff", padding: "26px 20px 60px", fontFamily: "Arial, sans-serif" }}>
@@ -70,10 +65,10 @@ export default function MerkleExplorerPage() {
             <div style={{ color: "#9ba8c8", fontSize: 11, letterSpacing: 1.5, fontWeight: 700 }}>01 / LEAF DATA</div>
             <h2 style={{ fontSize: 20, margin: "10px 0 8px" }}>Edit the tree leaves</h2>
             <p style={{ color: "#8995b0", fontSize: 12, lineHeight: 1.6 }}>One leaf per line. Inputs stay in this page and are not sent to a MIX backend.</p>
-            <textarea aria-label="Merkle tree leaf values" value={rawLeaves} onChange={(event) => setRawLeaves(event.target.value)} rows={8} spellCheck={false} style={{ width: "100%", resize: "vertical", background: "#0b1020", border: "1px solid #29334c", borderRadius: 10, color: "#e7eaff", padding: 13, font: "13px/1.8 ui-monospace, monospace", outline: "none" }} />
+            <textarea aria-label="Merkle tree leaf values" value={rawLeaves} onChange={(event) => { setBusy(true); setError(""); setVerified(null); setRawLeaves(event.target.value); }} rows={8} spellCheck={false} style={{ width: "100%", resize: "vertical", background: "#0b1020", border: "1px solid #29334c", borderRadius: 10, color: "#e7eaff", padding: 13, font: "13px/1.8 ui-monospace, monospace", outline: "none" }} />
             <div style={{ color: "#8d9ab6", fontSize: 11, marginTop: 8 }}>Leaves: {leaves.length} / 16 · Maximum 256 characters per leaf</div>
             <label style={{ display: "block", color: "#cbd3e7", fontSize: 12, margin: "18px 0 7px" }}>Select a leaf to inspect</label>
-            <select aria-label="Selected Merkle leaf" value={Math.min(selectedIndex, Math.max(leaves.length - 1, 0))} onChange={(event) => setSelectedIndex(Number(event.target.value))} style={{ width: "100%", background: "#0b1020", border: "1px solid #29334c", borderRadius: 9, color: "#eef1ff", padding: 12 }}>
+            <select aria-label="Selected Merkle leaf" value={safeIndex} onChange={(event) => { setVerified(null); setSelectedIndex(Number(event.target.value)); }} style={{ width: "100%", background: "#0b1020", border: "1px solid #29334c", borderRadius: 9, color: "#eef1ff", padding: 12 }}>
               {leaves.map((leaf, index) => <option key={index} value={index}>{index + 1}. {leaf.slice(0, 48)}</option>)}
             </select>
           </section>
@@ -101,7 +96,7 @@ export default function MerkleExplorerPage() {
         <section style={{ ...panel, marginTop: 16 }}>
           <div style={{ color: "#9ba8c8", fontSize: 11, letterSpacing: 1.5, fontWeight: 700 }}>03 / MEMBERSHIP PATH</div>
           <h2 style={{ fontSize: 20, margin: "10px 0 8px" }}>Verify the selected leaf</h2>
-          {tree && <div style={{ color: "#cbd3e7", fontSize: 13, marginBottom: 14 }}>Selected leaf: <strong>{leaves[selectedIndex]}</strong></div>}
+          {tree && <div style={{ color: "#cbd3e7", fontSize: 13, marginBottom: 14 }}>Selected leaf: <strong>{leaves[safeIndex]}</strong></div>}
           {verified === true && <div role="status" style={{ display: "flex", alignItems: "center", gap: 9, color: "#8ce0b6", background: "#10271f", borderRadius: 9, padding: 12 }}><CheckCircle2 size={18} /> Membership path verified against the displayed root.</div>}
           {verified === false && <div role="status" style={{ display: "flex", alignItems: "center", gap: 9, color: "#ffb1b1", background: "#2a1b20", borderRadius: 9, padding: 12 }}><CircleAlert size={18} /> Membership verification failed.</div>}
           {tree && selectedProof.length === 0 && <p style={{ color: "#aab3ca", fontSize: 12 }}>This tree contains a single leaf, so the membership path is empty and the leaf hash is the root.</p>}
