@@ -36,8 +36,10 @@ Current partial implementation: an interactive arithmetic-only Playground, a sha
 **Exit criteria:** reproducible local proof generation and verification with automated tests.
 
 ## Milestone 3 — Explorers
+
+Current partial implementation: Merkle Explorer builds a domain-separated SHA-256 tree (leaf prefix `0x00`, parent prefix `0x01`), promotes odd nodes unchanged, and verifies local membership paths. This is not a ZK proof or an interoperable external Merkle standard.
 - [ ] Implement Proof Explorer with public-signal schema.
-- [ ] Implement Merkle Explorer using synthetic sample data.
+- [x] Implement local Merkle Explorer using synthetic sample data and SHA-256 membership paths.
 - [ ] Explain hash parameters and root construction.
 - [ ] Add accessibility and responsive tests.
 
