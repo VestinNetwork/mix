@@ -5,7 +5,11 @@
 
 ## 1. Security posture
 
-MIX is experimental software. Educational circuits and testnet contracts are not audited production systems. The UI and documentation must say so clearly.
+MIX is experimental software. Educational circuits and testnet contracts are not audited production systems. The UI and documentation must say so clearly. The current Playground performs arithmetic validation only; it does not generate or verify a cryptographic proof.
+
+The web foundation now sets baseline response headers for content-type sniffing, framing, referrer handling, browser permissions, and HTTPS transport. A Content Security Policy is intentionally pending because the current frontend uses inline styles and a remote font stylesheet. A restrictive CSP must be designed and tested rather than copied as a permissive default.
+
+The repository still needs a generated package lockfile, a successful clean install/build, and an external security review before production release.
 
 ## 2. MVP safety boundaries
 
@@ -55,7 +59,7 @@ MIX is experimental software. Educational circuits and testnet contracts are not
 
 ## 7. Dependencies and supply chain
 
-- Pin direct dependencies and commit the lockfile.
+- Pin direct dependencies and commit the lockfile; the lockfile is still pending.
 - Review package licenses and maintenance status.
 - Minimize dependencies in cryptographic code paths.
 - Use reproducible build steps where feasible.
