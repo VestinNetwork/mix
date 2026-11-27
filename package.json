@@ -25,5 +25,8 @@
     "eslint-config-next": "16.4.6",
     "typescript": "5.9.3"
   },
-  "type": "module"
+  "type": "module",
+  "engines": {
+    "node": ">=22.16.0"
+  }
 }
