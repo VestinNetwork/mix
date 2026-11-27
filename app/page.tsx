@@ -204,7 +204,7 @@ export default function Home() {
           <div className="modules-grid">
             {filteredModules.map((module) => {
               const Icon = module.icon;
-              return <article className="module-card" key={module.number} onClick={module.title === "ZK Playground" ? () => window.location.assign("/playground") : undefined} role={module.title === "ZK Playground" ? "link" : undefined} tabIndex={module.title === "ZK Playground" ? 0 : undefined} onKeyDown={module.title === "ZK Playground" ? (event) => { if (event.key === "Enter" || event.key === " ") window.location.assign("/playground"); } : undefined}>
+              return <article className="module-card" key={module.number} onClick={module.title === "ZK Playground" || module.title === "Merkle Explorer" ? () => window.location.assign(module.title === "ZK Playground" ? "/playground" : "/merkle") : undefined} role={module.title === "ZK Playground" || module.title === "Merkle Explorer" ? "link" : undefined} tabIndex={module.title === "ZK Playground" || module.title === "Merkle Explorer" ? 0 : undefined} onKeyDown={module.title === "ZK Playground" || module.title === "Merkle Explorer" ? (event) => { if (event.key === "Enter" || event.key === " ") window.location.assign(module.title === "ZK Playground" ? "/playground" : "/merkle"); } : undefined}>
                 <div className="module-top"><div className={`module-icon ${module.tone}`}><Icon size={19} /></div><span className="module-number">{module.number}</span></div>
                 <h3>{module.title}</h3><p>{module.description}</p>
                 <div className="module-bottom"><span className="module-status"><i />{module.status}</span><ArrowUpRight size={16} className="module-arrow" /></div>
