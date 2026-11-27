@@ -1,23 +1,24 @@
 # MIX Roadmap
 
-**Status:** Initial plan v0.1
+**Status:** Initial plan v0.2
 
 ## Milestone 0 — Product foundation
 - [x] Confirm product positioning and MVP direction.
 - [x] Identify repository and confirm it is empty.
 - [x] Add initial product and architecture documentation.
 - [ ] Add contribution and coding-agent instructions.
-- [ ] Select and record dependency versions.
+- [x] Select and record initial dependency versions.
 
 **Exit criteria:** scope, boundaries, and implementation structure are agreed.
 
 ## Milestone 1 — Web foundation
-- [ ] Create Next.js App Router + TypeScript application.
-- [ ] Add Tailwind CSS and component system.
-- [ ] Establish responsive layout and MIX design tokens.
-- [ ] Add navigation and placeholder routes.
-- [ ] Add typed network configuration for Arbitrum Sepolia.
-- [ ] Add lint, typecheck, and build CI.
+- [x] Create Next.js App Router + TypeScript application scaffold.
+- [x] Establish responsive layout and MIX visual design system.
+- [x] Add dashboard navigation and module overview.
+- [x] Add initial Arbitrum Sepolia network identity in the UI.
+- [ ] Add typed runtime chain configuration and wallet integration.
+- [ ] Add package lockfile and CI lint, typecheck, and build validation.
+- [ ] Run and record a successful production build.
 
 **Exit criteria:** clean install, lint, typecheck, and production build succeed.
 
