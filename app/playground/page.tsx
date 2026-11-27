@@ -68,7 +68,7 @@ export default function PlaygroundPage() {
             <div style={{ marginTop: 20, background: "#0b1020", borderRadius: 10, padding: 14, color: "#dbe2f4", fontFamily: "monospace", fontSize: 14 }}>
               {a || "a"} × {b || "b"} = {product || "product"}
             </div>
-            <div aria-live="polite" style={{ display: "flex", gap: 10, alignItems: "center", marginTop: 16, borderRadius: 10, padding: 13, background: result.ok && result.valid ? "#10271f" : "#2a1b20", color: result.ready && result.valid ? "#8ce0b6" : "#ffb1b1" }}>
+            <div aria-live="polite" style={{ display: "flex", gap: 10, alignItems: "center", marginTop: 16, borderRadius: 10, padding: 13, background: result.ok && result.valid ? "#10271f" : "#2a1b20", color: result.ok && result.valid ? "#8ce0b6" : "#ffb1b1" }}>
               {result.ok && result.valid ? <CheckCircle2 size={18} /> : <CircleAlert size={18} />}
               <span style={{ fontSize: 13, lineHeight: 1.5 }}>{result.message}</span>
             </div>
