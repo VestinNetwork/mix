@@ -1,0 +1,33 @@
+{
+  "circuit": "Multiplier2",
+  "note": "Synthetic educational values only. These are arithmetic test vectors, not proof artifacts.",
+  "valid": [
+    {
+      "a": "3",
+      "b": "7",
+      "product": "21"
+    },
+    {
+      "a": "0",
+      "b": "42",
+      "product": "0"
+    },
+    {
+      "a": "12",
+      "b": "12",
+      "product": "144"
+    }
+  ],
+  "invalid": [
+    {
+      "a": "3",
+      "b": "7",
+      "product": "20"
+    },
+    {
+      "a": "5",
+      "b": "5",
+      "product": "24"
+    }
+  ]
+}
