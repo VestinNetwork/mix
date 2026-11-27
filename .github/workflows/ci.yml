@@ -2,16 +2,22 @@ name: CI
 
 on:
   push:
-    branches: [main]
+    branches: [main, production-foundation]
   pull_request:
     branches: [main]
 
 permissions:
   contents: read
 
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   web:
+    name: Web quality gates
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -21,9 +27,11 @@ jobs:
           node-version: 22
       - name: Install dependencies
         run: npm install --no-audit --no-fund
+      - name: Unit tests
+        run: npm test
       - name: Lint
         run: npm run lint
       - name: Typecheck
         run: npm run typecheck
-      - name: Build
+      - name: Production build
         run: npm run build
