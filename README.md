@@ -4,7 +4,7 @@
 
 MIX is a global, developer-oriented platform for learning, experimenting with, and integrating zero-knowledge proofs. The first release is a web application with a ZK Playground, proof verification, Merkle explorer, and developer documentation.
 
-> **Current stage:** Product foundation / pre-MVP  
+> **Current stage:** Web foundation / pre-MVP  
 > **Initial network:** Arbitrum Sepolia (chain ID 421614)  
 > **Mainnet:** Not in scope for the MVP
 
@@ -32,29 +32,40 @@ MIX is an independent project. It is not affiliated with Tornado Cash and is not
 | Contract Explorer | Inspect MIX testnet verifier deployments |
 | Developer Docs | Concepts, API contracts, setup, and examples |
 
-## Proposed stack
+## Technology
 
-- Next.js App Router + React + TypeScript
-- Tailwind CSS + shadcn/ui
-- wagmi + viem for wallet and EVM integration
-- Solidity + Foundry for verifier contracts and tests
-- Circom + snarkjs for the initial Groth16 learning path
-- Vitest for frontend/unit tests
+| Layer | Choice |
+| --- | --- |
+| Web framework | Next.js App Router 16.4.6 |
+| UI runtime | React 19.2.3 + TypeScript 5.9.3 |
+| Styling | Custom responsive CSS design system |
+| Icons | lucide-react |
+| Wallet / EVM | wagmi + viem (planned integration) |
+| Smart contracts | Solidity + Foundry (planned) |
+| ZK circuits | Circom + snarkjs (planned initial learning path) |
 
-Versions will be pinned when the application scaffold is created.
+Dependency versions are pinned in `package.json`. A package lockfile and reproducible CI install must be added before the first tested release.
 
 ## Repository map
 
 ```text
 .
-├── README.md
+├── app/
+│   ├── globals.css
+│   ├── layout.tsx
+│   └── page.tsx
 ├── docs/
 │   ├── PRODUCT_SPEC.md
 │   ├── ARCHITECTURE.md
 │   ├── ROADMAP.md
 │   ├── SECURITY.md
 │   └── DEVELOPMENT.md
-└── (application and contracts will be added in subsequent milestones)
+├── .env.example
+├── .gitignore
+├── eslint.config.mjs
+├── next.config.ts
+├── package.json
+└── tsconfig.json
 ```
 
 ## Network configuration
@@ -71,7 +82,7 @@ Do not commit private keys, seed phrases, API secrets, or production credentials
 
 ## Development status
 
-The repository currently contains the product and engineering foundation. No production contract has been deployed, no user funds are accepted, and no mainnet release is planned.
+The repository contains the product foundation, initial documentation, and a responsive dashboard shell. Interactive cryptographic modules, wallet integration, contracts, and CI validation are not implemented yet. The current dashboard is a UI scaffold, not a live proof system. No production contract has been deployed, no user funds are accepted, and no mainnet release is planned.
 
 See [Product Specification](docs/PRODUCT_SPEC.md), [Architecture](docs/ARCHITECTURE.md), [Roadmap](docs/ROADMAP.md), [Security](docs/SECURITY.md), and [Development Guide](docs/DEVELOPMENT.md).
 
