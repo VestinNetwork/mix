@@ -44,26 +44,36 @@ MIX is an independent project. It is not affiliated with Tornado Cash and is not
 | Smart contracts | Solidity + Foundry (planned) |
 | ZK circuits | Circom + snarkjs (planned initial learning path) |
 
-Dependency versions are pinned in `package.json`. A package lockfile and reproducible CI install must be added before the first tested release.
+Direct dependency versions are pinned in `package.json`. A generated npm lockfile is still required before installs are reproducible; CI currently uses `npm install` until that lockfile is committed.
 
 ## Repository map
 
 ```text
 .
 ├── app/
+│   ├── error.tsx
 │   ├── globals.css
 │   ├── layout.tsx
-│   └── page.tsx
+│   ├── merkle/page.tsx
+│   ├── not-found.tsx
+│   ├── page.tsx
+│   ├── playground/page.tsx
+│   ├── robots.ts
+│   └── sitemap.ts
+├── circuits/multiplier2/
+│   ├── Multiplier2.circom
+│   ├── README.md
+│   └── test-vectors.json
 ├── docs/
-│   ├── PRODUCT_SPEC.md
-│   ├── ARCHITECTURE.md
-│   ├── ROADMAP.md
-│   ├── SECURITY.md
-│   └── DEVELOPMENT.md
-├── .env.example
-├── .gitignore
-├── eslint.config.mjs
-├── next.config.ts
+├── lib/
+│   ├── merkle.mjs
+│   ├── merkle.d.mts
+│   ├── multiplier.mjs
+│   └── multiplier.d.mts
+├── tests/
+├── .github/workflows/ci.yml
+├── .nvmrc
+├── .npmrc
 ├── package.json
 └── tsconfig.json
 ```
@@ -82,9 +92,9 @@ Do not commit private keys, seed phrases, API secrets, or production credentials
 
 ## Development status
 
-The repository contains the product foundation, initial documentation, and a responsive dashboard shell. Interactive cryptographic modules, wallet integration, contracts, and CI validation are not implemented yet. The current dashboard is a UI scaffold, not a live proof system. No production contract has been deployed, no user funds are accepted, and no mainnet release is planned.
+The repository now contains a responsive dashboard, an arithmetic-only ZK Playground preview, shared input validation, a Circom teaching circuit, a local SHA-256 Merkle Explorer with membership paths, committed test vectors, twelve Node unit tests, error/not-found boundaries, baseline HTTP security headers, and deployment/quality/threat-model documentation. The arithmetic preview is not a cryptographic proof. Circom compilation, witness generation, cryptographic proof generation/verification, wallet integration, verifier contracts, and deployment are not yet complete. GitHub Actions is configured, but recent runs failed before a hosted runner was assigned; a successful full build has not been verified. No production contract has been deployed, no user funds are accepted, and no mainnet release is planned.
 
-See [Product Specification](docs/PRODUCT_SPEC.md), [Architecture](docs/ARCHITECTURE.md), [Roadmap](docs/ROADMAP.md), [Security](docs/SECURITY.md), and [Development Guide](docs/DEVELOPMENT.md).
+See [Product Specification](docs/PRODUCT_SPEC.md), [Architecture](docs/ARCHITECTURE.md), [Roadmap](docs/ROADMAP.md), [Security](docs/SECURITY.md), [Development Guide](docs/DEVELOPMENT.md), [Deployment Guide](docs/DEPLOYMENT.md), [Quality Gates](docs/QUALITY_GATES.md), [Merkle Explorer Guide](docs/MERKLE_EXPLORER.md), and [Threat Model](docs/THREAT_MODEL.md).
 
 ## License
 

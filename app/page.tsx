@@ -34,7 +34,7 @@ type Section = "Overview" | "Playground" | "Proof explorer" | "Merkle explorer" 
 
 const navItems: { label: Section; icon: typeof LayoutDashboard; tag?: string }[] = [
   { label: "Overview", icon: LayoutDashboard },
-  { label: "Playground", icon: FlaskConical, tag: "Soon" },
+  { label: "Playground", icon: FlaskConical },
   { label: "Proof explorer", icon: FileCheck2, tag: "Soon" },
   { label: "Merkle explorer", icon: GitBranch, tag: "Soon" },
   { label: "Contracts", icon: Boxes, tag: "Soon" },
@@ -47,7 +47,7 @@ const modules = [
     title: "ZK Playground",
     description: "Experiment with circuits, inputs, constraints, and proof verification in a guided workspace.",
     icon: FlaskConical,
-    status: "In development",
+    status: "Preview available",
     tone: "violet"
   },
   {
@@ -63,7 +63,7 @@ const modules = [
     title: "Merkle Explorer",
     description: "Explore tree structure, leaf nodes, root hashes, and membership concepts.",
     icon: GitBranch,
-    status: "Planned",
+    status: "Preview available",
     tone: "mint"
   },
   {
@@ -89,8 +89,8 @@ export default function Home() {
   );
 
   const selectSection = (section: Section) => {
-    if (section === "Playground") {
-      window.location.assign("/playground");
+    if (section === "Playground" || section === "Merkle explorer") {
+      window.location.assign(section === "Playground" ? "/playground" : "/merkle");
       return;
     }
     setActive(section);
@@ -204,7 +204,7 @@ export default function Home() {
           <div className="modules-grid">
             {filteredModules.map((module) => {
               const Icon = module.icon;
-              return <article className="module-card" key={module.number} onClick={module.title === "ZK Playground" ? () => window.location.assign("/playground") : undefined} role={module.title === "ZK Playground" ? "link" : undefined} tabIndex={module.title === "ZK Playground" ? 0 : undefined} onKeyDown={module.title === "ZK Playground" ? (event) => { if (event.key === "Enter" || event.key === " ") window.location.assign("/playground"); } : undefined}>
+              return <article className="module-card" key={module.number} onClick={module.title === "ZK Playground" || module.title === "Merkle Explorer" ? () => window.location.assign(module.title === "ZK Playground" ? "/playground" : "/merkle") : undefined} role={module.title === "ZK Playground" || module.title === "Merkle Explorer" ? "link" : undefined} tabIndex={module.title === "ZK Playground" || module.title === "Merkle Explorer" ? 0 : undefined} onKeyDown={module.title === "ZK Playground" || module.title === "Merkle Explorer" ? (event) => { if (event.key === "Enter" || event.key === " ") window.location.assign(module.title === "ZK Playground" ? "/playground" : "/merkle"); } : undefined}>
                 <div className="module-top"><div className={`module-icon ${module.tone}`}><Icon size={19} /></div><span className="module-number">{module.number}</span></div>
                 <h3>{module.title}</h3><p>{module.description}</p>
                 <div className="module-bottom"><span className="module-status"><i />{module.status}</span><ArrowUpRight size={16} className="module-arrow" /></div>
