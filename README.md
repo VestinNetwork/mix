@@ -44,7 +44,7 @@ MIX is an independent project. It is not affiliated with Tornado Cash and is not
 | Smart contracts | Solidity + Foundry (planned) |
 | ZK circuits | Circom + snarkjs (planned initial learning path) |
 
-Dependency versions are pinned in `package.json`. A package lockfile and reproducible CI install must be added before the first tested release.
+Direct dependency versions are pinned in `package.json`. A generated npm lockfile is still required before installs are reproducible; CI currently uses `npm install` until that lockfile is committed.
 
 ## Repository map
 
@@ -82,9 +82,9 @@ Do not commit private keys, seed phrases, API secrets, or production credentials
 
 ## Development status
 
-The repository contains the product foundation, initial documentation, and a responsive dashboard shell. Interactive cryptographic modules, wallet integration, contracts, and CI validation are not implemented yet. The current dashboard is a UI scaffold, not a live proof system. No production contract has been deployed, no user funds are accepted, and no mainnet release is planned.
+The repository now contains a responsive dashboard, an arithmetic-only ZK Playground preview, a shared input validator, a Circom teaching circuit, committed test vectors, six Node unit tests, error/not-found boundaries, baseline HTTP security headers, and deployment/quality/threat-model documentation. The arithmetic preview is not a cryptographic proof. Circom compilation, witness generation, proof generation/verification, wallet integration, verifier contracts, and deployment are not yet complete. GitHub Actions is configured, but recent runs failed before a hosted runner was assigned; a successful full build has not been verified. No production contract has been deployed, no user funds are accepted, and no mainnet release is planned.
 
-See [Product Specification](docs/PRODUCT_SPEC.md), [Architecture](docs/ARCHITECTURE.md), [Roadmap](docs/ROADMAP.md), [Security](docs/SECURITY.md), and [Development Guide](docs/DEVELOPMENT.md).
+See [Product Specification](docs/PRODUCT_SPEC.md), [Architecture](docs/ARCHITECTURE.md), [Roadmap](docs/ROADMAP.md), [Security](docs/SECURITY.md), [Development Guide](docs/DEVELOPMENT.md), [Deployment Guide](docs/DEPLOYMENT.md), [Quality Gates](docs/QUALITY_GATES.md), and [Threat Model](docs/THREAT_MODEL.md).
 
 ## License
 
