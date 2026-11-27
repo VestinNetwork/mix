@@ -22,7 +22,7 @@ The Node test suite checks:
 - Maximum preview input bounds.
 - The committed valid and invalid circuit test vectors.
 
-These tests validate the TypeScript input-checking helper. They do not compile Circom, generate a witness, generate a cryptographic proof, or verify a proof.
+These tests validate the shared JavaScript input-checking module, which exposes TypeScript declarations for the web application. They do not compile Circom, generate a witness, generate a cryptographic proof, or verify a proof.
 
 ## CI gates
 
