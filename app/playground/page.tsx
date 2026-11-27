@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { evaluateMultiplier } from "@/lib/multiplier";
+import { evaluateMultiplier } from "@/lib/multiplier.mjs";
 import { ArrowLeft, CheckCircle2, CircleAlert, Code2, FlaskConical, ShieldAlert } from "lucide-react";
 
 const circuitSource = `template Multiplier2() {
