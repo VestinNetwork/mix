@@ -1,3 +1,4 @@
+import { readFile } from "node:fs/promises";
 import test from "node:test";
 import assert from "node:assert/strict";
 import { evaluateMultiplier } from "../lib/multiplier.ts";
@@ -26,4 +27,16 @@ test("rejects negative values, decimals, and formatted strings", () => {
 
 test("rejects values outside the documented preview range", () => {
   assert.equal(evaluateMultiplier("1000001", "1", "1000001").ok, false);
+});
+
+test("matches the committed educational circuit test vectors", async () => {
+  const vectors = JSON.parse(await readFile(new URL("../circuits/multiplier2/test-vectors.json", import.meta.url), "utf8"));
+  for (const vector of vectors.valid) {
+    const result = evaluateMultiplier(vector.a, vector.b, vector.product);
+    assert.equal(result.ok && result.valid, true, JSON.stringify(vector));
+  }
+  for (const vector of vectors.invalid) {
+    const result = evaluateMultiplier(vector.a, vector.b, vector.product);
+    assert.equal(result.ok && result.valid, false, JSON.stringify(vector));
+  }
 });
