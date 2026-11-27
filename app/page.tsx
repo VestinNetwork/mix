@@ -63,7 +63,7 @@ const modules = [
     title: "Merkle Explorer",
     description: "Explore tree structure, leaf nodes, root hashes, and membership concepts.",
     icon: GitBranch,
-    status: "Planned",
+    status: "Preview available",
     tone: "mint"
   },
   {
@@ -89,8 +89,8 @@ export default function Home() {
   );
 
   const selectSection = (section: Section) => {
-    if (section === "Playground") {
-      window.location.assign("/playground");
+    if (section === "Playground" || section === "Merkle explorer") {
+      window.location.assign(section === "Playground" ? "/playground" : "/merkle");
       return;
     }
     setActive(section);
