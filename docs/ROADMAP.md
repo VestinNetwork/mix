@@ -24,7 +24,7 @@
 
 ## Milestone 2 — ZK learning engine
 
-Current partial implementation: an interactive arithmetic-only Playground, a shared input validator, six passing unit tests in an isolated Node 22.16 test run, and a Circom source example. No Circom compilation, witness generation, cryptographic proof generation, or proof verification has been run.
+Current partial implementation: an interactive arithmetic-only Playground, a shared input validator, eleven passing unit tests in an isolated Node 22.16 test run, and a Circom source example. No Circom compilation, witness generation, cryptographic proof generation, or proof verification has been run.
 - [x] Add one small, non-financial educational circuit (Multiplier2 example).
 - [ ] Pin compiler/proof-library versions and commit reproducible dependency lockfile.
 - [x] Add committed known-good valid/invalid test vectors and Node unit tests.
@@ -40,7 +40,7 @@ Current partial implementation: an interactive arithmetic-only Playground, a sha
 Current partial implementation: Merkle Explorer builds a domain-separated SHA-256 tree (leaf prefix `0x00`, parent prefix `0x01`), promotes odd nodes unchanged, and verifies local membership paths. This is not a ZK proof or an interoperable external Merkle standard.
 - [ ] Implement Proof Explorer with public-signal schema.
 - [x] Implement local Merkle Explorer using synthetic sample data and SHA-256 membership paths.
-- [ ] Explain hash parameters and root construction.
+- [x] Explain hash parameters and root construction in the Merkle Explorer guide.
 - [ ] Add accessibility and responsive tests.
 
 **Exit criteria:** users can inspect and understand each step of the educational example.
