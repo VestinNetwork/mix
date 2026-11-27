@@ -15,7 +15,7 @@ export default function MerkleExplorerPage() {
   const [verified, setVerified] = useState<boolean | null>(null);
   const [busy, setBusy] = useState(true);
 
-  const leaves = useMemo(() => rawLeaves.split("\n").map((value) => value.trim()).filter(Boolean), [rawLeaves]);
+  const leaves = useMemo(() => rawLeaves.split("\n").filter((value) => value.trim().length > 0), [rawLeaves]);
 
   useEffect(() => {
     let cancelled = false;
