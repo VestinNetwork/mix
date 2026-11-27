@@ -35,3 +35,17 @@ test("rejects malformed membership proof data", async () => {
   const tree = await buildMerkleTree(["a", "b"]);
   assert.equal(await verifyMerkleProof("a", [{ side: "up", hash: "bad" }], tree.root), false);
 });
+
+test("verifies every leaf for all supported tree sizes", async () => {
+  for (let size = 1; size <= 16; size += 1) {
+    const leaves = Array.from({ length: size }, (_, index) => `leaf-${size}-${index}`);
+    const tree = await buildMerkleTree(leaves);
+    for (let index = 0; index < size; index += 1) {
+      assert.equal(
+        await verifyMerkleProof(leaves[index], tree.proofs[index], tree.root),
+        true,
+        `failed for size ${size}, index ${index}`
+      );
+    }
+  }
+});
